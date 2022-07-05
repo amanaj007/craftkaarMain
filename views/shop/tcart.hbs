@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title>CraftKaar</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/logo.png">
+  <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/font-awesome/font-awesome.min.css">
+  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+    integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+</head>
+
+<body>
+  <header>
+    <div class="mainMenu margintop">
+      <nav>
+
+        <ul class="navv menu" id="navb">
+          <a href="/"><img class="logoimG" src="/images/logo.png" alt=""></a>
+
+
+          <li>
+
+            <a onclick="openNav()" id="okay" class="dropbtn">&#9776;</a>
+            <div id="mySidenav" class="sidenav">
+              <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+
+              <form class="searchClass" action="/items" method="get">
+                <input class="searchinp" type="text" placeholder="Search" aria-label="Search" name="search">
+                <button type="submit" class="search"><i class="fas fa-search search"></i></button>
+              </form>
+
+              <a class="ppStyle dropdown-btn" href="#">Categories<i class="fa fa-caret-down"></i></a>
+              <div class="dropdown-container">
+                <a href="/items/category/Fruit">Fruits</a>
+                <a href="#">Jewellery</a>
+                <a href="#">Organics</a>
+                <a href="#">Utils</a>
+              </div>
+
+              <a href="/category/Mobile">New Arrivals</a>
+              <a href="/category/Mobile">Seasons special</a>
+              <a href="#">Top sellers</a>
+              <a href="/return">Returns</a>
+              <a href="#">Help desk</a>
+              <a href="http://localhost:4000/">Craftkaar seller</a>
+              <a href="/about">About CraftKaar</a>
+            </div>
+
+
+          </li>
+
+
+            <li>
+              <a class="signin" href="/signin" title="Sign in"><i class="fas fa-user-circle"></i></a>
+            </li>
+            <li>
+              <a class="pixel15 signin" href="/signup" title="Sign up"><i class="fas fa-user-plus"></i></a>
+            </li>
+            <li style="padding-left: 0px;">
+              <a class="pixel15 signin" href="/tcart" title="Cart"><i class="fas fa-shopping-cart"></i></a>
+            </li>
+
+
+
+        </ul>
+
+      </nav>
+    </div>
+  </header>
+
+
+
+
+<div style="padding: 0 5% 0 5%;">
+
+  <style>
+    
+    @media screen and (max-width: 768px){
+      .buto{
+        font-size: 100px;
+      }
+
+      .parra{
+        font-size: 1.5rem;
+      }
+
+      .imggg{
+        height: 120px;
+      }
+    }
+
+    .parag{
+      font-family: 'Manrope', sans-serif;
+    }
+
+    .buttonn{
+      background-color: black;
+  color: white;
+  padding: 4px 24px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  margin: 4px 2px;
+  cursor: pointer;
+  text-decoration: none;
+  text-shadow: 0 0 2px #1F51FF, 0 0 3px #1F51FF;
+  box-shadow: 0 0 2px #1F51FF, 0 0 3px #1F51FF;
+  border-radius: 5%;
+  font-family: 'Manrope', sans-serif;
+    }
+
+    .imig{height: 120px;}
+
+    .cartt{text-decoration:none; 
+  font-family: 'Manrope', sans-serif;}
+
+    
+  </style>
+
+{{# if products}}
+{{#each products}}
+
+<a class="cartt" href="/items/{{ this.item._id }}">
+
+<p class="parag parra">
+{{this.item.name}}</p>
+<img class="imig imggg" src="/image/{{this.item.image}}" alt="" >
+
+</a>
+
+<p class="parag parra">Price: 
+{{this.price}}</p>
+<p class="parra parag">Quantity: {{this.qty}}</p>
+
+<a class="buto buttonn" href="/reduce/{{this.item._id}}">Reduce</a>
+
+<a class="buto buttonn" href="/delete/{{this.item._id}}">delete</a>
+
+{{/each}}
+
+<p class="parra parag">Total: {{totalPrice}}</p>
+
+<a class="buto buttonn" href="/bfirst">Buy</a>
+{{ else }}
+
+
+{{/if}}
+
+<a class="buttonn buto" href="/">Cancel</a>
+
+</div>
+
+
+
+
+<div class=""
+  style="position: fixed; z-index: 1500; right: 50px; bottom: 50px; font-size: 31px; background-color: #4dc247; border-radius: 29.5px; align-items: center; justify-content: center;">
+  <a href="https://wa.me/917000530586"><span><i class="fab fa-whatsapp"
+        style="fill: white; padding-right: 15px; padding-right: 7.7px; color: white; justify-content: center; padding-left: 7.7px; padding-top: 5.9px; padding-bottom: 5.7px;"></i></span></a>
+</div>
+
+<button onclick="topFunction()" id="myBtn" title="Go to top"><i class="fas fa-arrow-up"></i></button>
+
+
+<script>
+  function openNav() {
+    if (screen.width < 768) {
+      document.getElementById("mySidenav").style.width = "70%";
+    } else {
+      document.getElementById("mySidenav").style.width = "30%";
+    }
+  }
+
+  function closeNav() {
+    document.getElementById("mySidenav").style.width = "0";
+  }
+</script>
+
+<script>
+  let dropdown = document.getElementsByClassName("dropdown-btn");
+  let i;
+
+  for (i = 0; i < dropdown.length; i++) {
+    dropdown[i].addEventListener("click", function () {
+      this.classList.toggle("active");
+      let dropdownContent = this.nextElementSibling;
+      if (dropdownContent.style.display === "block") {
+        dropdownContent.style.display = "none";
+      } else {
+        dropdownContent.style.display = "block";
+      }
+    });
+  }
+</script>
+
+
+
+<script type="text/javascript">
+  let a = 1;
+  function showHide() {
+    if (a == 1) {
+      document.getElementById("showh").style.display = "block";
+      return a = 0;
+    } else {
+      document.getElementById("showh").style.display = "none";
+      return a = 1;
+    }
+  }
+
+</script>
+
+
+
+
+<script>
+  let mybutton = document.getElementById("myBtn");
+
+  window.onscroll = function () { scrollFunction() };
+
+  function scrollFunction() {
+    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+      mybutton.style.display = "block";
+    } else {
+      mybutton.style.display = "none";
+    }
+  }
+
+  function topFunction() {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+  }
+</script>
+
+</body>
+
+</html>

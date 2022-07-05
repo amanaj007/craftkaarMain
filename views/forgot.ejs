@@ -1,0 +1,13 @@
+<%- include ('./partials/header'); -%>
+
+<div class="padding5">
+
+<h1 class="pStyle">Forgot password.</h1>
+<h3 class="pStyle">Enter your email.</h3>
+<form action="/forgot" method="post">
+  <input class="input1" type="email" name="username" placeholder="email" onkeydown="texx(this);" onkeyup="texx(this);">
+  <input class="input2" type="submit" value="Submit">
+</form>
+
+</div>
+<%- include ('./partials/footer'); -%>

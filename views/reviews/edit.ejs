@@ -1,0 +1,10 @@
+<%- include ('../partials/header'); -%>
+
+<form class="" action="/items/<%= item_id %>/reviews/<%= review._id %>?_method=PUT" method="post">
+  <input class="input1" type="text" name="review[text]" value="<%= review.text %>" onkeydown="texx(this);" onkeyup="texx(this);">
+  <button class="input2">Submit</button>
+</form>
+
+
+<a class="buttonDes" href="/items/<%= item_id %>">Cancel</a>
+<%- include ('../partials/footer'); -%>

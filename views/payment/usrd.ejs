@@ -1,0 +1,106 @@
+<%- include ('../partials/header'); -%>
+
+<p style="font-family: 'Manrope', sans-serif; padding-left: 10px;"> Please wait while we fetch you the payment snippet.</p>
+
+<div class="">
+<input style="visibility: hidden;" type="text" id="rzp-text">
+<button class="buttonDes" id="order-button1">Click to proceed</button>
+</div>
+<div id="paymentDetails"></div>
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script>
+
+    document.getElementById("order-button1").addEventListener('click', okay);
+  
+    //document.getElementById("order-button1").onclick = okay();
+
+    async function okay(e){            
+     await one(e);
+    }
+
+    async function one (e){
+        let url = "/api/payment/order"
+
+        await fetch(url)
+        .then(response => response.json())
+        .then(data => document.getElementById("rzp-text").value = data.sub.id);
+        console.log("i");
+        return two(e);
+      }
+
+      function two(e) {
+          let options = {
+            "key": "<%= key %>",
+            "currency": "INR",
+            "name": "Craftkaar",
+            "description": "Craftkaar payment",
+            "order_id": document.getElementById("rzp-text").value,
+            "handler": function (response) {
+              document.getElementById("order-pay-id").value = response.razorpay_payment_id;
+              document.getElementById("order-id").value = response.razorpay_order_id;
+              document.getElementById("order-sig").value = response.razorpay_signature;
+              laSt();
+            },
+            "theme": { "color": '#white' }
+          };
+          let rzp1 = new Razorpay(options);
+          rzp1.open();
+          e.preventDefault();
+        }
+
+      async function laSt(){
+        let url = '/api/payment/verify';
+        let params = {
+          razorpay_order_id: document.getElementById('order-id').value,
+          razorpay_payment_id: document.getElementById('order-pay-id').value,
+          razorpay_signature: document.getElementById('order-sig').value
+        };
+
+        let body = JSON.stringify(params);
+
+        await fetch(url, {
+          method: 'POST', // or 'PUT'
+          headers: {
+            'Accept': 'application / json',
+            'Content-Type': 'application/json',
+            //'Content-Length': body.length.toString()
+          },
+          body: body // body data type must match "Content-Type" header
+        }).then(async function (response) {
+          return await response.json();
+        }).then(function (muutuja) {
+          document.getElementById('success').value = muutuja.status;
+          console.log(muutuja.status);
+          });
+
+        return goToUrl();
+      }
+
+  function goToUrl(){
+    if(document.getElementById('success').value === 'success'){
+      window.location = "https://craftkaar.com/success" || "https://www.craftkaar.com/success" || process.env.port + '/success'
+      //redirect to orders
+    } else if (document.getElementById('success').value === 'failure') {
+      window.location = 'https://craftkaar.com/checkout' || "https://www.craftkaar.com/checkout" || process.env.port + '/checkout'
+    }
+  }
+</script>
+
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+<div style="visibility: visible;">
+
+
+<label for="">Order id :</label>
+<input type="text" id="order-id">
+<label for="">Payment id :</label>
+<input type="text" id="order-pay-id">
+<label for="">Order signature :</label>
+<input type="text" id="order-sig">
+
+<input type="text" id="success">
+</div>
+
+
+<%- include ('../partials/footer'); -%>
+

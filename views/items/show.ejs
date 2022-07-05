@@ -1,0 +1,143 @@
+<%- include ('../partials/header'); -%>
+<% if(item){ %>
+
+<div class="showTop">
+
+<div class="flexC">
+
+<div class="padding2 flex-item-left">
+
+<img class="showImg showimg1" src="/image/<%= item.image %>" alt="ok" >
+
+</div>
+
+<div class="padding5 flex-item-right">
+
+<p class="fontAA"><%=item.name%></p>
+
+<p class="pStyle"><span style="font-weight:bold">Sold by</span> <%=item.sellerName%></a></p>
+
+<% const mrp = item.price * 1.5 %>
+
+<p class="pStyle" style="text-decoration: line-through;"><span style="font-weight:bold">MRP ₹</span> <%=mrp%></p>
+
+<p class="pStyle"><span style="font-weight:bold">Price ₹</span> <%=item.price%></p>
+
+<p class="pStyle"><span style="font-weight:bold">Savings </span>33%</p>
+
+<% if(item.quantity > 0){ %>
+
+<p class="pStyle"><span style="font-weight:bold">Availability:</span> <%= item.quantity %></p>
+
+<% } else { %>
+
+<p class="pStyle"><span style="font-weight:bold">Availability:</span> Out of stock</p>
+
+<% } %>
+
+<p class="pStyle"><span style="font-weight:bold">Description:</span> <%=item.description%></p>
+
+<p class="pStyle"><span style="font-weight:bold">Material:</span> <%=item.material%></p>
+
+<p class="pStyle"><span style="font-weight:bold">Weight:</span> <%=item.weight%> grams</p>
+
+<p class="pStyle"><span style="font-weight:bold">Delivery period:</span> 5 to 10 days.</p>
+
+
+<a title="Share on Whatsapp" href="https://api.whatsapp.com/send?text=[post-title] [post-url]"><i style="color:#25D366;" class="fab fa-whatsapp"></i></a>
+<a title="Share on Facebook" href="https://www.facebook.com/sharer.php?u=[post-url]"><i style="color:#4267B2;" class="fab fa-facebook"></i></a>
+<a title="Tweet over twitter" href="https://twitter.com/share?url=[post-url]&text=[post-title]"><i style="color:#00acee;" class="fab fa-twitter"></i></a>
+<a title="Pin over pinterest" href="https://pinterest.com/pin/create/bookmarklet/?media=[post-img]&url=[post-url]&description=[post-title]"><i style="color:#E60023;" class="fab fa-pinterest"></i></a>
+<a title="Share on linkedin" href="https://www.linkedin.com/shareArticle?url=[post-url]&title=[post-title]"><i style="color:#0e76a8;" class="fab fa-linkedin"></i></a>
+<a title="Share via email" href="$email = 'mailto:?subject=' . $[post-title] . '&body=Check out this site: '. $[post-url] .'" title="Share by Email';"><i style="color:#6C7878;" class="far fa-envelope"></i></a>
+
+<% if(item.quantity > 0){ %>
+<a class="buttonDes" <%if(currentBuyer){%>
+  href="/add-to-cart/<%= item._id %>"
+<%} else {%>
+  href="/add-cart/<%= item._id %>"
+<%}%> >Add to cart</a>
+<a class="buttonDes" href="/buyn/<%= item._id %>">Buy now</a>
+<% } %>
+</div>
+</div>
+<p>
+  <a class="buttonDes" href="/items/<%= item._id %>/reviews/new">Add a review</a>
+</p>
+
+<% item.reviews.slice(0, 5).forEach(function(review){ %>
+<p class="pStyle"><%= review.text %> <span style="font-weight:bold;">by</span> <%= review.author.username %> </p>
+
+<% if (currentBuyer && review.author.id.equals(currentBuyer._id)){ %>
+
+
+<a class="buttonDes" href="/items/<%= item._id %>/reviews/<%= review.id %>/edit">Edit</a>
+
+<form action="/items/<%= item._id %>/reviews/<%= review.id %>?_method=DELETE" method="POST">
+  <input class="buttonDes" type="submit" name="" value="Delete">
+</form>
+
+<% } %>
+
+<% /*, {limit: 5}*/}) %>
+
+
+<a class="buttonDes" href="/items/<%= item._id %>/reviews/<%=item.reviews._id%>">See all reviews</a>
+
+
+<div class="">
+
+  <p class="fontAA">Related products</p>
+
+  <% cattitems.forEach(catti => { %>
+  <% const fruits = catti.items %>
+
+<% const more = fruits.slice(); %>
+
+<% const ipop = []; %>
+<% const ooo = Math.floor(Math.random() * more.length) %>
+<% ipop.push(more[ooo]); %>
+<% more.splice(ooo, 1); %>
+
+<% const oooo = Math.floor(Math.random() * more.length) %>
+<% ipop.push(more[oooo]); %>
+<% more.splice(oooo, 1); %>
+
+<% const ooooo = Math.floor(Math.random() * more.length) %>
+<% ipop.push(more[ooooo]); %>
+<% more.splice(ooooo, 1); %>
+
+<% const oooooo = Math.floor(Math.random() * more.length) %>
+<% ipop.push(more[oooooo]); %>
+<% more.splice(oooooo, 1); %>
+
+
+<%  ipop.forEach(banana => { %>
+
+    <div class="landing landingStyle">
+  <a href="/items/<%= banana._id %>">
+  <p class="pNone">
+
+      <img class="imggG" src="/image/<%= banana.image %>" alt="">
+      <p class="itemp"><%= banana.name%></p>
+      <p class="itemp">by <%=banana.sellerName%></p>
+      <p class="itemp">₹ <%=banana.price%></p>
+
+  </p>
+  </a>
+
+  </div>
+<%  }); %>
+
+
+<% }); %>
+
+</div>
+
+</div>
+
+<% } %>
+
+
+
+<%- include ('../partials/footer'); -%>

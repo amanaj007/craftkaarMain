@@ -1,0 +1,48 @@
+<%- include ('../partials/header'); -%>
+
+<div class="padding5">
+
+<% if(products.cart){ %>
+
+<% products.cart.forEach(function(item){ %>
+
+<a class="carttex" href="/items/<%= item.id %>">
+
+<p class="pStyle"><%= item.name %> </p>
+
+<img src="/image/<%= item.image %>" alt="" height="100px;">
+
+</a>
+
+<p class="pStyle">Quantity: <%= item.qty %> </p>
+
+<a class="buttonDes" href="/lessen/<%= item.id %>">Remove one</a>
+
+<a class="buttonDes" href="/add/<%= item.id %>">Add one</a>
+
+<p class="pStyle">Price: <%= item.price %> </p>
+
+<% }) %>
+
+<% } else { %>
+
+<p class="pStyle">Cart is empty</p>
+
+<% } %>
+
+<% if(total> 0){ %>
+
+<p class="pStyle" action="/checkout" method="post" name="amount">Total: <%= total %> </p>
+
+<a class="buttonDes" href="/bfirst">Buy</a>
+
+<% } else { %>
+
+<p class="pStyle">Cart is empty.</p>
+
+<% } %>
+
+
+</div>
+
+<%- include ('../partials/footer'); -%>

@@ -1,0 +1,259 @@
+
+<div class=""
+  style="position: fixed; z-index: 1500; right: 50px; bottom: 50px; font-size: 31px; background-color: #4dc247; border-radius: 25%; align-items: center; justify-content: center;">
+  <a href="https://wa.me/917000530586"><span><i class="fab fa-whatsapp"
+        style="fill: white; color: white; align-items:center; padding-left: 8.5px; padding-right: 8.5px; padding-top: 6px; padding-bottom: 6px;"></i></span></a>
+</div>
+
+<button onclick="topFunction()" id="myBtn" title="Go to top"><i class="fas fa-arrow-up"></i></button>
+
+
+<script>
+function openNav() {
+  if (screen.width < 768) {
+    document.getElementById("mySidenav").style.width = "70%";
+  } else {
+    document.getElementById("mySidenav").style.width = "30%";
+  }
+}
+
+function closeNav() {
+  document.getElementById("mySidenav").style.width = "0";
+}
+</script>
+
+<script>
+let dropdown = document.getElementsByClassName("dropdown-btn");
+let i;
+
+for (i = 0; i < dropdown.length; i++) {
+  dropdown[i].addEventListener("click", function() {
+  this.classList.toggle("active");
+  let dropdownContent = this.nextElementSibling;
+  if (dropdownContent.style.display === "block") {
+  dropdownContent.style.display = "none";
+  } else {
+  dropdownContent.style.display = "block";
+  }
+  });
+}
+</script>
+
+
+
+<script type="text/javascript">
+  let a = 1;
+  function showHide() {
+    if(a==1){
+      document.getElementById("showh").style.display = "block";
+      return a = 0;
+    } else {
+      document.getElementById("showh").style.display = "none";
+      return a = 1;
+    }
+  }
+
+</script>
+
+
+<script type="text/javascript">
+function limit(element)
+{
+    let max_chars = 10;
+
+    if(element.value.length > max_chars) {
+        element.value = element.value.substr(0, max_chars);
+    }
+}
+</script>
+
+
+<script type="text/javascript">
+function limitt(element)
+{
+    let max_char = 6;
+
+    if(element.value.length > max_char) {
+        element.value = element.value.substr(0, max_char);
+    }
+}
+</script>
+
+<script type="text/javascript">
+
+function texx(element)
+{
+    let max_chars = 250;
+
+    if(element.value.length > max_chars) {
+        element.value = element.value.substr(0, max_chars);
+    }
+}
+
+</script>
+
+<script>
+let mybutton = document.getElementById("myBtn");
+
+window.onscroll = function() {scrollFunction()};
+
+function scrollFunction() {
+  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+    mybutton.style.display = "block";
+  } else {
+    mybutton.style.display = "none";
+  }
+}
+
+function topFunction() {
+  document.body.scrollTop = 0;
+  document.documentElement.scrollTop = 0;
+}
+</script>
+
+<script type="text/javascript">
+
+let myForm = document.getElementById('myForm');
+  let skip = 0;
+  let limitii = 4;
+
+  document.getElementById('priceH').addEventListener("change", handleForm);
+
+  function handleForm(myForm){
+    document.querySelector('.moredata').innerHTML = "";
+    skip = 0;
+    limitii = 4;
+    myForm.preventDefault();
+    loadNore();
+  }
+
+  let loading = false;
+  let finished = false;
+
+  const mElement = document.querySelector('.moredata');
+
+  const loadMore = document.getElementById('loadmore');
+  document.addEventListener('scroll', () =>{
+    const rect = loadMore.getBoundingClientRect();
+    if(rect.top < window.innerHeight && !loading){
+      loadNore();
+    }
+  })
+
+  function loadNore(){
+    skip += limitii;
+    listAllItems(false);
+  }
+
+  function listAllItems(reset = true) {
+    let sort = document.getElementById('priceH').value;
+    loading = true;
+    if (reset) {
+      mElement.innerHTML = '';
+      skip = 0;
+      finished = false;
+    }
+    fetch(`${window.location.href + "data"}?skip=${skip}&limit=${limitii}&sort=${sort}`)
+      .then(response => response.json())
+      .then(result => {
+        result.item.forEach(item => {
+          const div = document.createElement('div');
+          if(screen.width < 768){
+            div.style.position = "relative";
+            div.style.width = "100%";
+            div.style.cssFloat = "left";
+            div.style.border = "thin solid";
+            div.style.borderRadius = "5%";
+            div.style.boxShadow = "0 0 1px #1F51FF, 0 0 1px #1F51FF";
+            div.style.borderColor = "#002868";
+            div.style.backgroundColor = "rgba(173, 134, 134, 0.12)";
+            div.style.cursor = "pointer";
+            div.style.display = "flex";
+            div.style.alignItems = "center";
+            div.style.justifyContent = "center";
+            div.style.color = "black";
+          } else {
+            div.style.position = "relative";
+            div.style.width = "24.5%";
+            div.style.cssFloat = "left";
+            div.style.border = "thin solid";
+            div.style.borderRadius = "5%";
+            div.style.boxShadow = "0 0 1px #1F51FF, 0 0 1px #1F51FF";
+            div.style.borderColor = "#002868";
+            div.style.backgroundColor = "rgba(173, 134, 134, 0.12)";
+            div.style.cursor = "pointer";
+            div.style.display = "flex";
+            div.style.alignItems = "center";
+            div.style.justifyContent = "center";
+            div.style.color = "black";
+          }
+ 
+          const a = document.createElement('a');
+          a.href = "/items/"+ item._id;
+          a.style.textDecoration = "none";
+
+          const pa = document.createElement('p');
+          pa.style.textAlign = "center";
+          pa.style.alignContent = "center";
+          pa.style.fontFamily = "'Manrope', sans-serif";
+
+          const image = document.createElement('img');
+          image.src = "/image/" + item.image;
+          image.style.height = "165px";
+          image.style.width = "90%";
+          image.style.boxShadow = "0 0 3px #1F51FF, 0 0 4px #1F51FF";
+          image.style.marginLeft = "auto";
+          image.style.marginRight = "auto";
+          image.style.display = "block";
+
+
+          const name = document.createElement('p');
+          name.textContent = item.name.slice(0, 30);
+          name.style.fontWeight = "normal";
+          name.style.fontFamily = "'Manrope', sans-serif";
+          name.style.color = "black";
+          name.style.marginTop = "0px";
+          name.style.marginBottom = "0px";
+          
+         
+          const contents = document.createElement('p');
+          contents.textContent ="₹ " +  item.price;
+          contents.style.fontWeight = "normal";
+          contents.style.fontFamily = "'Manrope', sans-serif";
+          contents.style.color = "black";
+          contents.style.marginTop = "0px";
+          contents.style.marginBottom = "0px";
+
+   
+          const cont = document.createElement('p');
+          const mrp = item.price * 1.5;
+          cont.textContent = "₹ " + mrp;
+          cont.style.fontWeight = "normal";
+          cont.style.textDecorationLine = "line-through";
+          cont.style.fontFamily = "'Manrope', sans-serif";
+          cont.style.color = "black";
+          cont.style.marginTop = "0px";
+          cont.style.marginBottom = "0px";
+
+          a.appendChild(pa);
+          a.appendChild(image);
+          a.appendChild(name);
+          a.appendChild(cont);
+          a.appendChild(contents);
+
+          div.appendChild(a);
+
+          mElement.appendChild(div);
+        });
+      });
+      loading = false;
+
+      
+  }
+
+
+</script>
+
+</body>
+
+</html>

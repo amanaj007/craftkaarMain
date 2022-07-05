@@ -1,0 +1,22 @@
+<%- include ('../partials/header'); -%>
+
+<div class="padding5">
+
+<form class="" action="/profile/<%= user._id %>/profile/?_method=PUT" method="post">
+  <input class="input1" type="email" name="username" placeholder="username" value="<%= user.username %>" required>
+  <input class="input1" type="text" name="name" placeholder="Name" value="<%= user.name %>" onkeydown="texx(this);" onkeyup="texx(this);">
+  <input class="input1" type="number" name="mobile" placeholder="Mobile" onkeydown="limit(this);" onkeyup="limit(this);" value="<%= user.mobile %>">
+  <input class="input1" type="text" name="addline1" placeholder="Address line one" value="<%= user.addline1 %>" onkeydown="texx(this);" onkeyup="texx(this);">
+  <input class="input1" type="text" name="addline2" placeholder="Address line two" value="<%= user.addline2 %>" onkeydown="texx(this);" onkeyup="texx(this);">
+  <input class="input1" type="text" name="city" placeholder="City" value="<%= user.city %>" onkeydown="texx(this);" onkeyup="texx(this);">
+  <input class="input1" type="Number" name="zipcode" placeholder="Zipcode" onkeydown="limitt(this);" onkeyup="limitt(this);" value="<%= user.zipcode %>">
+  <input class="input1" type="text" name="state" placeholder="State" value="<%= user.state %>" onkeydown="texx(this);" onkeyup="texx(this);">
+  <select class="input1" name="country" size="1" placeholder="Country" value="<%= user.country %>">
+    <option value="India" selected>India</option>
+  </select>
+  <button class="input2">Save changes</button>
+</form>
+
+</div>
+
+<%- include ('../partials/footer'); -%>

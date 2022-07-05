@@ -1,0 +1,68 @@
+<%- include ('./partials/header'); -%>
+
+<div class="landing1">
+
+  <h1 style="width: 100%; font-size: 1.2rem;" class="landingc">Celebrate new year with Craftkaar.</h1>
+
+</div>
+
+<div class="landing1">
+
+  <h1 style="width: 100%; font-size: 1.2rem;" class="landingc">33% off this season.</h1>
+
+</div>
+
+
+<div style="display:grid;">
+  <img style="width: 100%; height: 100%;" src="/images/images1.jpg" alt="">
+</div>
+
+<div class="landing1">
+
+  <h1 style="width: 100%; height: 100%; font-size: 1.2rem;" class="landingc">Handmade Indian Crafts.</h1>
+
+</div>
+
+<div class="divc2">
+
+<div class="divc3">
+  <form id="myForm" action="/" method="">
+    <select id="priceH" name="sort" size="1" placeholder="Sort">
+      <option value="desc">Price: High to Low</option>
+      <option value="asc">Price: Low to High</option>
+    </select>
+  </form>
+</div>
+
+
+<% if(item){ %>
+<% let traP = 15; item.slice(0, 0).forEach(function(item){ %>
+  <div class="landing divland1">
+<a href="/items/<%= item._id %>">
+<p class="pisop">
+
+    <img class="imgsty" src="/image/<%= item.image %>" alt="">
+    <p class="itemp opopo"><%= item.name%></p>
+    <p  class="itemp opopo">by <%=item.sellerName%></p>
+    <p class="itemp opopo">₹ <%=item.price%></p>
+
+</p>
+</a>
+
+</div>
+
+<% }); %>
+<% } else { %>
+<% } %>
+
+
+
+<div class="moredata">
+
+</div>
+<p id="loadmore" style="visibility:hidden;">loadmore</p>
+
+</div>
+
+
+<%- include ('./partials/footer'); -%>

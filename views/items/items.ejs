@@ -1,0 +1,24 @@
+<%- include ('../partials/header'); -%>
+
+<div class="itemsPAD">
+
+
+
+<% if(noMatch !== null) {%>
+<%= noMatch%>
+<% } %>
+
+<% items.forEach(function(item){ %>
+<li class="liStyle">
+  <a class="liASt" href="/items/<%= item._id %>">
+    <%= item.name%>
+
+  <br>
+  <img class="imggG" src="/image/<%= item.image %>" alt="ok" >
+  </a>
+</li>
+<% }); %>
+
+</div>
+
+<%- include ('../partials/footer'); -%>

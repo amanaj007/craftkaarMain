@@ -1,0 +1,15 @@
+<%- include ('../partials/header'); -%>
+
+<div class="padding5">
+
+<% results.forEach(result => { %>
+  <p class="pStyle"><%= result.name %></p>
+  <img style="height:100px;" src="/image/<%= result.image %>" alt="ok" >
+  <p class="pStyle"><%= result.amount %></p>
+  <a class="input2" href="/returns/<%=result._id%>">Return</a>
+  <a class="input2" href="/cancels/<%=result._id%>">Cancel</a>
+<% }) %>
+
+</div>
+
+<%- include ('../partials/footer'); -%>

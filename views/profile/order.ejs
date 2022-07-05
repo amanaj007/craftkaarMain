@@ -1,0 +1,30 @@
+<%- include ('../partials/header'); -%>
+<% if(item.orders){ %>
+
+<% item.orders.forEach(function(item){ %>
+
+<a class="type2" href="/items/<%= item.id %>">
+
+<p class="pStyle"><%= item.name %> </p>
+
+<img src="/image/<%= item.image %>" alt="" height="100px;">
+
+</a>
+
+<a class="buttonDes" href="/returns/<%=item._id%>">Return</a>
+
+<a class="buttonDes" href="/cancels/<%=item._id%>">Cancel</a>
+
+<p class="pStyle"><%= item.qty %> </p>
+
+<p class="pStyle"><%= item.price %> </p>
+
+<% }) %>
+
+<% } else { %>
+
+<p class="pStyle">Cart is empty</p>
+
+<% } %>
+
+<%- include ('../partials/footer'); -%>

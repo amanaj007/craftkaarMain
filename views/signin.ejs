@@ -1,0 +1,19 @@
+<%- include ('./partials/header'); -%>
+<div class="padding12">
+
+
+<h1 class="type1">Sign In</h1>
+<form class="" action="/signin" method="post">
+  <input class="input1" type="email" name="username" placeholder="email" onkeydown="texx(this);" onkeyup="texx(this);">
+  <input class="input1" type="password" name="password" placeholder="password" onkeydown="texx(this);" onkeyup="texx(this);">
+  <input class="input2" type="submit" value="Sign In">
+</form>
+
+<a href="/google"><img style="height: 40px;" src="/images/google2.png" alt=""></a>
+<br>
+
+<h1 class="type1">Forgot password? Click <a class="type2" href="/forgot">here</a>.</h1>
+<h1 class="type1"><a class="type2" href="/signup">Sign up</a> instead.</h1>
+</div>
+
+<%- include ('./partials/footer'); -%>

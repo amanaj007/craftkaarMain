@@ -1,0 +1,17 @@
+<%- include ('../partials/header'); -%>
+<% item.reviews.forEach(function(review){ %>
+<p class="pStyle"><%= review.text %> - <%= review.author.username %> </p>
+
+<% if (currentBuyer && review.author.id.equals(currentBuyer._id)){ %>
+<a class="buttonDes" href="/items/<%= item._id %>/reviews/<%= review.id %>/edit">Edit</a>
+
+<input id="showh" style="width:200px; height:60px; display: none;" type="text" name="" value="">
+
+<form action="/items/<%= item._id %>/reviews/<%= review.id %>?_method=DELETE" method="POST">
+  <input class="input2" type="submit" name="" value="Delete">
+</form>
+
+<% } %>
+
+<%}) %>
+<%- include ('../partials/footer'); -%>

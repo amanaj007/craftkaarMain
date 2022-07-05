@@ -1,0 +1,18 @@
+<%- include ('../partials/header'); -%>
+
+<div class="padding5">
+
+<h1 class="type1">Add a review to <%= item.name %></h1>
+
+<form class="" action="/items/<%= item._id %>/reviews" method="post">
+  <input class="input1" type="text" name="review[text]" placeholder="Write your review" onkeydown="texx(this);" onkeyup="texx(this);">
+  <!-- <input type="text" name="review[author]" placeholder="other"> -->
+  <button class="input2">Submit</button>
+</form>
+
+
+<a class="type2" href="/items/<%= item._id %>">Cancel</a>
+
+</div>
+
+<%- include ('../partials/footer'); -%>

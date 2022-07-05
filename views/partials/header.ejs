@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="keywords" content="Craft, Art, Indian Craft, Indian Art, Craftkaar, Artists, Artist, Natural, Artificial, Jewellery, Bonsai, texture, design, composition, abstract, painting, fine arts, arts and craft, art and craft, modern art, drawings, education, exhibit, classic, decor, inspiration, inspirational, acrylic, original, contemporary art, kids, museum">
+  <meta name="description" content="Handmade Indian Arts and Crafts">
+  <title>CraftKaar</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/logo.png">
+  <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/font-awesome/font-awesome.min.css">
+  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+</head>
+
+<body>
+  <header>
+    <div class="mainMenu margintop">
+    <nav>
+
+        <ul class="navv menu" id="navb">
+         <a href="/"><img class="logoimG" src="/images/logo.png" alt=""></a>
+
+
+          <li>
+
+            <a onclick="openNav()" id="okay" class="dropbtn">&#9776;</a>
+              <div id="mySidenav" class="sidenav">
+                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+
+                  <form class="searchClass" action="/items" method="get">
+                    <input class="searchinp" type="text" placeholder="Search" aria-label="Search" name="search">
+                    <button type="submit" class="search"><i class="fas fa-search search"></i></button>
+                  </form>
+
+                  <a class="ppStyle dropdown-btn" href="#">Categories<i class="fa fa-caret-down"></i></a>
+                    <div class="dropdown-container">
+                      <a href="/items/category/Fruit">Fruits</a>
+                      <a href="/items/category/Jewellery">Jewellery</a>
+                      <a href="/items/category/Organics">Organics</a>
+                      <a href="/items/category/Utils">Utils</a>
+                    </div>
+
+                  <a href="/return">Returns</a>
+                  <a href="https://seller.craftkaar.com/">Craftkaar seller</a>
+                  <a href="/about">About CraftKaar</a>
+              </div>
+
+
+          </li>
+
+
+          <%if(!currentBuyer){%>
+          <li >
+            <a class="signin" href="/signin" title="Sign in"><i class="fas fa-user-circle"></i></a>
+          </li>
+          <li >
+            <a class="pixel15 signin" href="/signup" title="Sign up"><i class="fas fa-user-plus"></i></a>
+          </li>
+          <li style="padding-left: 0px;">
+            <a class="pixel15 signin" href="/tcart" title="Cart"><i class="fas fa-shopping-cart"></i></a>
+          </li>
+          <%} else {%>
+          <li >
+            <a class="signin1" title="Profile" href="/profile/<%=user._id%>"><i class="fas fa-user-circle"></i></a>
+          </li>
+          <li >
+            <a class="signin2" href="/signout" title="Sign out"><i class="fas fa-sign-out-alt"></i></a>
+          </li>
+          <li>
+            <a class="pixel15 signin3" style="padding-right: 40px;" href="/cart" title="Cart"><i class="fas fa-shopping-cart"></i></a>
+             </li>
+              <%}%>
+
+                
+
+        </ul>
+
+    </nav>
+    </div>
+  </header>

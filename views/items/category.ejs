@@ -1,0 +1,27 @@
+<%- include ('../partials/header'); -%>
+
+<div class="divTop">
+
+
+
+<% cattitems.forEach(catti => { %>
+<%  catti.items.forEach(banana => { %>
+  <div class="landing landingStyle">
+<a href="/items/<%= banana._id %>">
+<p class="pNone">
+
+    <img class="imggG" src="/image/<%= banana.image %>" alt="">
+    <p class="itemp"><%= banana.name%></p>
+    <p class="itemp">by <%=banana.sellerName%></p>
+    <p class="itemp">₹ <%=banana.price%></p>
+
+</p>
+</a>
+
+</div>
+<%  }); %>
+<% }); %>
+
+</div>
+
+<%- include ('../partials/footer'); -%>
